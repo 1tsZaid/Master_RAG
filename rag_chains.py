@@ -7,8 +7,11 @@ from langchain.prompts import ChatPromptTemplate
 from retriever_setup import get_retriever
 from gemini_setup import get_LLM
 
+import json
+
 
 INDEX_NAME = "master-rag"
+PROMTP_FILE = "prompt_templates.txt"
 
 
 retriever = get_retriever(index_name=INDEX_NAME, bm25_params_path="bm25_params.json", alpha=0.8)
@@ -18,20 +21,20 @@ llm = get_LLM()
 # Prompt Templates
 # ####################################################################
 
-medical_template = """You are an assistant for diagnosing and treating medical conditions
+base_template = """
 Answer the question based only on the following context:
 {context}
 You are allowed to rephrase the answer based on the context.
 If the answer isn't contained here, say you don't know.
 Question: {input}"""
 
-prompt_infos = [
-    {
-        "name": "medical", 
-        "description": "Good for answering questions about medical conditions", 
-        "prompt_template": medical_template
-    }
-]
+prompt_infos = []
+try:
+    with open(PROMTP_FILE, "r") as f:
+        prompt_infos = json.load(f)
+except json.JSONDecodeError:
+    print("Prompt_templates file is empty. Only has the default chain.")
+
 
 # ####################################################################
 # Default Chain
@@ -102,3 +105,43 @@ router_prompt = PromptTemplate(
 )
 
 router_chain = router_prompt | llm
+
+#####################################################################
+
+def add_chain(name: str, description: str, prompt_template: str, destination_chains: create_retrieval_chain, router_chain) -> None:
+
+    prompt_template = prompt_template + base_template
+
+    # dump into file
+    prompt_infos.append({
+        "name": name,
+        "description": description,
+        "prompt_template": prompt_template
+    })
+    with open(PROMTP_FILE, "w") as f:
+        json.dump(prompt_infos, f)
+
+    # destination chain
+    prompt = ChatPromptTemplate.from_template(template=prompt_template)
+
+    combine_docs_chain = create_stuff_documents_chain(llm, prompt)
+    chain = create_retrieval_chain(retriever, combine_docs_chain)
+
+    destination_chains[name] = chain
+
+    # routing chain
+    destinations.append(f"{name}: {description}")
+    destinations_str = "\n".join(destinations)
+
+    router_template = MULTI_PROMPT_ROUTER_TEMPLATE.format(
+        destinations=destinations_str
+    )
+
+    router_prompt = PromptTemplate(
+        template=router_template,
+        input_variables=["input"]
+    )
+
+    router_chain = router_prompt | llm
+
+    return destination_chains, router_chain

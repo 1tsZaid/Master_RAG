@@ -64,7 +64,7 @@ langchain-huggingface = ">=0.1.2,<0.2.0"
 langchain-community = ">=0.3.20,<0.4.0"
 langchain-text-splitters = ">=0.3.7,<0.4.0"
 pinecone-text = ">=0.10.0,<0.11.0"
-pinecone = {extras = ["grpc"], version = ">=6.0.2,<7.0.0"}
+pinecone["grpc"] = ">=6.0.2,<7.0.0"}
 dotenv = ">=0.9.9,<0.10.0"
 langgraph = ">=0.3.25,<0.4.0"
 streamlit = ">=1.44.1,<2.0.0"

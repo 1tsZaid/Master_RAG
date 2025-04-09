@@ -11,10 +11,10 @@ Master RAG uses both keyword and semantic search (hybrid search) to find the mos
 This setup is perfect for anyone who wants to turn their data into a smart, chat-based assistant whether for documents, support, education, or more.
 
 ## 🚀 Features
-✅ Add and manage custom data   
-✅ Add and manage new RAG pipeline 
-✅ Chat with different RAG systems via a unified interface  
-✅ Automatically switch between pipelines based on query content  
+✅ Add and manage custom data
+✅ Add and manage new RAG pipeline
+✅ Chat with different RAG systems via a unified interface
+✅ Automatically switch between pipelines based on query content
 ✅ Pinecone-powered hybrid search
 ✅ Built with LangGraph for flexible, stateful RAG workflows
 

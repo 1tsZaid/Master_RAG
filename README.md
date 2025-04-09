@@ -12,10 +12,15 @@ This setup is perfect for anyone who wants to turn their data into a smart, chat
 
 ## 🚀 Features
 ✅ Add and manage custom data
+
 ✅ Add and manage new RAG pipeline
+
 ✅ Chat with different RAG systems via a unified interface
+
 ✅ Automatically switch between pipelines based on query content
+
 ✅ Pinecone-powered hybrid search
+
 ✅ Built with LangGraph for flexible, stateful RAG workflows
 
 ## 🛠️ Tech Stack
@@ -27,7 +32,9 @@ This setup is perfect for anyone who wants to turn their data into a smart, chat
 - **Dependency Management**: Poetry  
 
 ## 📸 UI Preview
-Coming soon!
+![Medical RAG UI](./image.png)
+![Medical RAG UI](./image2.png)
+![Medical RAG UI](./image3.png)
 
 ## 🔧 Installation & Setup
 ### Prerequisites

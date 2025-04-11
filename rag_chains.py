@@ -11,7 +11,7 @@ import json
 
 
 INDEX_NAME = "master-rag"
-PROMTP_FILE = "prompt_templates.txt"
+PROMPT_FILE = "prompt_templates.txt"
 
 
 retriever = get_retriever(index_name=INDEX_NAME, bm25_params_path="bm25_params.json", alpha=0.8)
@@ -30,7 +30,7 @@ Question: {input}"""
 
 prompt_infos = []
 try:
-    with open(PROMTP_FILE, "r") as f:
+    with open(PROMPT_FILE, "r") as f:
         prompt_infos = json.load(f)
 except json.JSONDecodeError:
     print("Prompt_templates file is empty. Only has the default chain.")
@@ -118,7 +118,7 @@ def add_chain(name: str, description: str, prompt_template: str, destination_cha
         "description": description,
         "prompt_template": prompt_template
     })
-    with open(PROMTP_FILE, "w") as f:
+    with open(PROMPT_FILE, "w") as f:
         json.dump(prompt_infos, f)
 
     # destination chain

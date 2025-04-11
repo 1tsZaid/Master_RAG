@@ -1,8 +1,8 @@
 # 🧠 Master RAG
-Perfect for building custom RAG tailored to various domains — whether it's medical, legal, educational, or general-purpose.
+Building custom RAG tailored to various domains with zero code — whether it's medical, legal, educational, or general-purpose.
 
 ## 📝 Overview
-**Master RAG** is an AI-powered system that allows users to build and chat with their own custom RAG (Retrieval-Augmented Generation) pipelines. It works by letting users upload their own data, which is stored in a vector database, and then create a new RAG system for that data.
+**Master RAG** is a platform for hosting different RAG systems. Users can build and chat with their own custom RAG (Retrieval-Augmented Generation) pipelines. It works by letting users upload their own data, which is stored in a vector database, and then create a new RAG pipeine for that data.
 
 The system uses smart prompt understanding to detect what the user needs and automatically switches to the correct RAG pipeline. This means users don’t have to manually choose or configure anything they can just start asking questions.
 

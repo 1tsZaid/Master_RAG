@@ -53,6 +53,12 @@ def request(input: str) -> str:
     final_output = result["output"]
     return final_output
 
-def refresh_chain(name: str, description: str, prompt_template: str) -> None:
+def refresh_chain(name: str, description: str, prompt_template: str) -> bool:
     global destination_chains, router_chain
+
+    if name in destination_chains:
+        return False
+
     destination_chains, router_chain = add_chain(name, description, prompt_template, destination_chains=destination_chains, router_chain=router_chain)
+
+    return True

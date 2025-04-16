@@ -60,8 +60,8 @@ with tab3:
 
         submitted = st.form_submit_button("Submit")
         if submitted:
-            refresh_chain(name, description, prompt)
-            st.write("Submitted!")
+            submit = refresh_chain(name, description, prompt)
+            st.write("Submitted!") if submit else st.write("Already exists!")
 
     prompt_infos = []
     prompt_file = "prompt_templates.txt"

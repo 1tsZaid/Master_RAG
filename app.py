@@ -45,10 +45,17 @@ with tab1:
 
 
 with tab2:
-    uploaded_files = st.file_uploader("Choose a new document", accept_multiple_files=True)
-    for uploaded_file in uploaded_files:
-        index_name = "master-rag"
-        upsert(index_name, uploaded_file.getvalue().decode("utf-8"))
+    uploaded_files = st.file_uploader("Choose a new document", accept_multiple_files=True, key="uploader")
+
+if uploaded_files and not st.session_state.get("uploaded"):
+    with st.spinner("Uploading..."):
+        for uploaded_file in uploaded_files:
+            index_name = "master-rag"
+            upsert(index_name, uploaded_file.getvalue().decode("utf-8"))
+    st.session_state.uploaded = True
+    st.success("Done uploading!")
+elif not uploaded_files:
+    st.session_state.uploaded = False
 
 with tab3:
     st.write("Add a new RAG system")
@@ -59,9 +66,14 @@ with tab3:
         prompt = st.text_area("System prompt", "You are an assistant for diagnosing and treating medical conditions")
 
         submitted = st.form_submit_button("Submit")
+        message = None
+
         if submitted:
             submit = refresh_chain(name, description, prompt)
-            st.write("Submitted!") if submit else st.write("Already exists!")
+            message = "New RAG system added" if submit else "RAG system already exists"
+        
+        if message:
+            st.write(message)
 
     prompt_infos = []
     prompt_file = "prompt_templates.txt"

@@ -2,6 +2,7 @@ from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from retriever_setup import get_retriever
+from config import INDEX_NAME
 
 def upsert(index_name: str, text: str, batch_size: int = 500) -> None:
 
@@ -29,7 +30,6 @@ def upsert(index_name: str, text: str, batch_size: int = 500) -> None:
     print(f"Upserted {len(chunks)} chunks")
 
 if __name__ == "__main__":
-    index_name = "master-rag"
     document = "document.txt"
 
     # Load the document using langchain's TextLoader
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     documents = loader.load()  # This loads the document into a list of Document objects
 
     text = str(documents[0].page_content)
-    upsert(index_name=index_name, text=text)
+    upsert(index_name=INDEX_NAME, text=text)
     print("Upsert completed.")

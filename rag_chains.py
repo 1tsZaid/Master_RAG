@@ -6,15 +6,15 @@ from langchain.prompts import ChatPromptTemplate
 
 from retriever_setup import get_retriever
 from gemini_setup import get_LLM
+from config import INDEX_NAME, BM25_PARAMS_PATH
 
 import json
 
 
-INDEX_NAME = "master-rag"
 PROMPT_FILE = "prompt_templates.txt"
 
 
-retriever = get_retriever(index_name=INDEX_NAME, bm25_params_path="bm25_params.json", alpha=0.8)
+retriever = get_retriever(index_name=INDEX_NAME, bm25_params_path=BM25_PARAMS_PATH, alpha=0.8)
 llm = get_LLM()
 
 # ####################################################################

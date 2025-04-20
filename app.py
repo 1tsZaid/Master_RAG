@@ -3,6 +3,7 @@ import json
 
 from master_rag import request, refresh_chain
 from upsert import upsert
+from config import INDEX_NAME
 
 tab1, tab2, tab3 = st.tabs(["Chatbot", "Upload to Store", "New RAG"])
 
@@ -50,8 +51,7 @@ with tab2:
 if uploaded_files and not st.session_state.get("uploaded"):
     with st.spinner("Uploading..."):
         for uploaded_file in uploaded_files:
-            index_name = "master-rag"
-            upsert(index_name, uploaded_file.getvalue().decode("utf-8"))
+            upsert(INDEX_NAME, uploaded_file.getvalue().decode("utf-8"))
     st.session_state.uploaded = True
     st.success("Done uploading!")
 elif not uploaded_files:

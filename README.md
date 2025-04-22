@@ -42,11 +42,13 @@ This setup is perfect for anyone who wants to turn their data into a smart, chat
 ### Prerequisites
 - Python 3.X
 - Poetry
+- Gemini API key
+- Pinecone API key
 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/master-rag.git
+   git clone https://github.com/1tsZaid/master_RAG.git
    cd master-rag
    ```
 
@@ -56,6 +58,10 @@ This setup is perfect for anyone who wants to turn their data into a smart, chat
    ```
 
 3. Set up environment variables in a `.env` file (e.g., API keys for Pinecone, Google GenAI, etc.)
+   ```bash
+   PINECONE_API_KEY=your_pinecone_api_key
+   GOOGLE_API_KEY=your_google_api_key
+   ```
 
 4. Launch the application:
    ```bash

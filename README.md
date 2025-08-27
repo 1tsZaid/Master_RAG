@@ -2,7 +2,7 @@
 A RAG Hub that can host and provide all the users' RAG systems. These can be of various domains like medical, legal, educational, or general-purpose.
 
 ## 📝 Overview
-**Master RAG** is a platform for hosting different RAG systems. Users can build and chat with their own custom RAG (Retrieval-Augmented Generation) pipelines. It works by letting users upload their own data, which is stored in a vector database, and then create a new RAG pipeline for that data.
+**Master RAG** is a no code platform for hosting different RAG systems. Users can build and chat with their own custom RAG (Retrieval-Augmented Generation) pipelines. It works by letting users upload their own data, which is stored in a vector database, and then users can create a new RAG pipeline in the ui for that data which can automatically provision the relevant infrastructure for it to work.
 
 It can also provide all of those hosted pipelines to anyone. Users can add a new pipeline, and others can use this pipeline when prompted according to it
 
